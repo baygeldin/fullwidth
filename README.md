@@ -4,7 +4,7 @@ Simple text to fullwidth text converter. Reliable, well tested, fast.
 ### Installation & usage
 
 ```
-npm install --save fullwidth
+npm install fullwidth
 ```
 
 ```javascript
