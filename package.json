@@ -8,7 +8,7 @@
     "lint": "standard --verbose src/**/*.js test/**/*.js | snazzy",
     "clean": "rm -rf lib",
     "build": "babel src -d lib",
-    "prepublish": "npm run lint && npm test && npm run build",
+    "prepare": "npm run lint && npm test && npm run build",
     "postpublish": "npm run clean"
   },
   "repository": {
