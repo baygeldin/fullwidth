@@ -1,19 +1,19 @@
 import charCodes from './fullwidth'
 
-const codes = Object
-    .keys(charCodes)
-    .reduce((map, key) => {
-        map[key.codePointAt(0)] = charCodes[key].codePointAt(0)
-        return map
-    }, {})
+const codesMap = Object
+  .keys(charCodes)
+  .reduce((map, key) => {
+    map[key.codePointAt()] = charCodes[key].codePointAt()
+    return map
+  }, {})
 
-export default str => {
-    let res = '';
+export default (str) => {
+  let res = ''
 
-    for (let ch of str) {
-        let code = codes[ch.codePointAt(0)];
-        res += code ? String.fromCodePoint(code) : ch;
-    }
+  for (let ch of str) {
+    let code = codesMap[ch.codePointAt()]
+    res += code ? String.fromCodePoint(code) : ch
+  }
 
-    return res;
-};
+  return res
+}
