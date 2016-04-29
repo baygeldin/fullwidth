@@ -7,7 +7,7 @@
     "test": "mocha --compilers js:babel-core/register test/*.js",
     "lint": "standard --verbose src/**/*.js test/**/*.js | snazzy",
     "clean": "rm -rf lib",
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --copy-files",
     "prepare": "npm run lint && npm test && npm run build",
     "postpublish": "npm run clean"
   },
