@@ -57,4 +57,10 @@ describe('fullwidth text converter', () => {
         let converted = 'пиздеть　–　не　мешки　ворочать';
         fullwidth(original).should.equal(converted);
     });
+
+    it('converts half-width katatana letters to fullwidth katakana', () => {
+        let original = '｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾟ';
+        let converted = '。「」、・ヲァィゥェォャュョッーアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン゛゜';
+        fullwidth(original).should.equal(converted);
+    });
 });
