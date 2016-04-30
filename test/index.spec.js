@@ -28,6 +28,12 @@ describe('fullwidth text converter', () => {
         fullwidth(original).should.equal(converted);
     });
 
+    it('converts white spaces correctly', () => {
+        let original = ' \t \u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009';
+        let converted = '　\t　　　　　　　　　　　';
+        fullwidth(original).should.equal(converted);
+    });
+
     it('converts additional symbols correctly', () => {
         let original = '·₵£¥₩';
         let converted = '･￠￡￥￦';
@@ -48,7 +54,7 @@ describe('fullwidth text converter', () => {
 
     it('does not convert other symbols', () => {
         let original = 'пиздеть – не мешки ворочать';
-        let converted = 'пиздеть – не мешки ворочать';
+        let converted = 'пиздеть　–　не　мешки　ворочать';
         fullwidth(original).should.equal(converted);
     });
 });

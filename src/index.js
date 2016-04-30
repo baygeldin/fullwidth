@@ -5,6 +5,8 @@
 function convertChar(code) {
     if (code >= 33 && code <= 126) {
         return code + 65248;
+    } else if (code === 32 || (code >= 8192 && code <= 8201)) {
+        return 12288;
     } else if (code === 163) {
         return code + 65342;
     } else if (code === 165) {
@@ -21,7 +23,8 @@ function convertChar(code) {
 function hasFullwidth(code) {
     // 33 - !, 126 - ~, 163 - £, 165 - ¥,
     // 183 - ·, 8361 - ₩, 8373 - ₵
-    return code >= 33 && code <= 126 ||
+    return code >= 32 && code <= 126 ||
+        (code >= 8192 && code <= 8201) ||
         code === 163 || code === 165 ||
         code === 183 || code === 8361 ||
         code === 8373;
