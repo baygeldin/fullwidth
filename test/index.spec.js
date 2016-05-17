@@ -54,15 +54,33 @@ describe('fullwidth text converter', () => {
     fullwidth(original).should.equal(converted)
   })
 
-  it('does not convert other symbols', () => {
-    let original = 'пиздеть – не мешки ворочать'
-    let converted = 'пиздеть　–　не　мешки　ворочать'
+  it('converts half-width katatana letters correctly', () => {
+    let original = '｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾟ'
+    let converted = '。「」、・ヲァィゥェォャュョッーアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン゛゜'
     fullwidth(original).should.equal(converted)
   })
 
-  it('converts half-width katatana letters to fullwidth katakana', () => {
-    let original = '｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾟ'
-    let converted = '。「」、・ヲァィゥェォャュョッーアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン゛゜'
+  it('converts half-width katakana letters with dakuten correctly', () => {
+    let original = 'ｶﾞｷﾞｸﾞｹﾞｺﾞｻﾞｼﾞｽﾞｾﾞｿﾞﾀﾞﾁﾞﾂﾞﾃﾞﾄﾞﾊﾞﾋﾞﾌﾞﾍﾞﾎﾞｳﾞﾜﾞｦﾞ'
+    let converted = 'ガギグゲゴザジズゼゾダヂヅデドバビブベボヴヷヺ'
+    fullwidth(original).should.equal(converted)
+  })
+
+  it('converts half-width katakana letters with handakuten correctly', () => {
+    let original = 'ﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ'
+    let converted = 'パピプペポ'
+    fullwidth(original).should.equal(converted)
+  })
+
+  it('converts mixed text correctly', () => {
+    let original = 'ｶｶﾞﾊﾊﾟﾞabcﾟ'
+    let converted = 'カガハパ゛ａｂｃ゜'
+    fullwidth(original).should.equal(converted)
+  })
+
+  it('does not convert other symbols', () => {
+    let original = 'пиздеть – не мешки ворочать'
+    let converted = 'пиздеть　–　не　мешки　ворочать'
     fullwidth(original).should.equal(converted)
   })
 })

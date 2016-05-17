@@ -1,18 +1,44 @@
-import charCodes from './fullwidth'
+import dakutenMap from './dakuten'
+import handakutenMap from './handakuten'
+import charMap from './fullwidth'
 
-const codesMap = Object
-  .keys(charCodes)
-  .reduce((map, key) => {
-    map[key.charCodeAt()] = charCodes[key].charCodeAt()
-    return map
-  }, {})
+const dakuten = '\uFF9E'
+const handakuten = '\uFF9F'
+
+function charMapToCodesMap (charMap) {
+  return Object
+    .keys(charMap)
+    .reduce((map, key) => {
+      map[key.charCodeAt()] = charMap[key].charCodeAt()
+      return map
+    }, {})
+}
+
+const dakutenCodesMap = charMapToCodesMap(dakutenMap)
+const handakutenCodesMap = charMapToCodesMap(handakutenMap)
+const codesMap = charMapToCodesMap(charMap)
 
 export default (str) => {
   let res = ''
 
-  for (let ch of str) {
-    let code = codesMap[ch.charCodeAt()]
-    res += code ? String.fromCharCode(code) : ch
+  for (let i = 0; i < str.length; i++) {
+    let code = str[i].charCodeAt()
+    let fullwidthCode
+    let mark = str[i + 1]
+
+    if (mark === dakuten) {
+      fullwidthCode = dakutenCodesMap[code]
+    } else if (mark === handakuten) {
+      fullwidthCode = handakutenCodesMap[code]
+    }
+
+    if (fullwidthCode) {
+      i++
+    } else {
+      fullwidthCode = codesMap[code]
+    }
+
+    res += fullwidthCode ? String.fromCharCode(fullwidthCode) : str[i]
   }
 
   return res
