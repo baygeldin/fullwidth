@@ -8,6 +8,6 @@ npm install fullwidth
 ```
 
 ```javascript
-import fullwidth from 'fullwidth';
-console.log(fullwidth('Hello!')) // Ｈｅｌｌｏ!
+import fullwidth from 'fullwidth'
+console.log(fullwidth('Hello, 世界!')) // Ｈｅｌｌｏ，　世界！
 ```
